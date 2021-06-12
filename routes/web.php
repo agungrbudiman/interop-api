@@ -16,3 +16,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('pegawai',  ['uses' => 'PegawaiController@showAllPegawai']);
+    $router->get('pegawai/{pe_id}',  ['uses' => 'PegawaiController@showOnePegawai']);
+    $router->post('pegawai',  ['uses' => 'PegawaiController@create']);
+    $router->put('pegawai/{pe_id}',  ['uses' => 'PegawaiController@update']);
+});
