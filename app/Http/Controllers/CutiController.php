@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuti;
+use App\Models\JenisCuti;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class CutiController extends Controller
 {
@@ -24,6 +27,32 @@ class CutiController extends Controller
     public function showOneCuti($id)
     {
         return response()->json(Cuti::find($id));
+    }
+
+    public function createCuti(Request $request)
+    {
+        $cuti = Cuti::create($request->all());
+        return response()->json($cuti, 201);
+    }
+
+    public function createKategori(Request $request)
+    {
+        $kategori = JenisCuti::create($request->all());
+        return response()->json($kategori, 201);
+    }
+
+    public function showKategori()
+    {
+        return response()->json(JenisCuti::all());
+    }
+
+    public function showCompleteCuti() {
+        $cuti = DB::table('cuti')
+            ->select('cuti.*', 'jenis_cuti.cuti_val', 'pegawai.pe_nama')
+            ->join('jenis_cuti', 'cuti.cuti_id', '=', 'jenis_cuti.id')
+            ->join('pegawai', 'cuti.pe_id', '=', 'pegawai.pe_id')
+            ->get();
+        return response()->json($cuti, 200);
     }
 
     //

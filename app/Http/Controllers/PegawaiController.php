@@ -49,6 +49,6 @@ class PegawaiController extends Controller
     public function showCuti($pe_id) {
         $pegawai = Pegawai::findOrFail($pe_id);
         $cuti = $pegawai->cuti;
-        return $cuti;
+        return response()->json($cuti, 200);
     }
 }
