@@ -39,4 +39,16 @@ class PegawaiController extends Controller
         $pegawai->update($request->all());
         return response()->json($pegawai, 200);
     }
+
+    public function delete($pe_id)
+    {
+        Pegawai::findOrFail($pe_id)->delete();
+        return response('Deleted Successfully', 200);
+    }
+
+    public function showCuti($pe_id) {
+        $pegawai = Pegawai::findOrFail($pe_id);
+        $cuti = $pegawai->cuti;
+        return $cuti;
+    }
 }

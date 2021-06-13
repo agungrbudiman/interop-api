@@ -20,6 +20,10 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('pegawai',  ['uses' => 'PegawaiController@showAllPegawai']);
     $router->get('pegawai/{pe_id}',  ['uses' => 'PegawaiController@showOnePegawai']);
+    $router->get('pegawai/cuti/{pe_id}',  ['uses' => 'PegawaiController@showCuti']);
     $router->post('pegawai',  ['uses' => 'PegawaiController@create']);
     $router->put('pegawai/{pe_id}',  ['uses' => 'PegawaiController@update']);
+    $router->delete('pegawai/{pe_id}',  ['uses' => 'PegawaiController@delete']);
+    $router->get('cuti',  ['uses' => 'CutiController@showAllCuti']);
+    $router->get('cuti/{id}',  ['uses' => 'CutiController@showOneCuti']);
 });
