@@ -46,9 +46,4 @@ class PegawaiController extends Controller
         return response('Deleted Successfully', 200);
     }
 
-    public function showCuti($pe_id) {
-        $pegawai = Pegawai::findOrFail($pe_id);
-        $cuti = $pegawai->cuti;
-        return response()->json($cuti, 200);
-    }
 }

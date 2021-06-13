@@ -46,6 +46,14 @@ class CutiController extends Controller
         return response()->json(JenisCuti::all());
     }
 
+    public function showCutiPegawai($pe_id)
+    {
+        $cuti = DB::table('cuti')
+            ->where('pe_id', '=', $pe_id)
+            ->get();
+        return response()->json($cuti, 200);
+    }
+
     public function showCompleteCuti() {
         $cuti = DB::table('cuti')
             ->select('cuti.*', 'jenis_cuti.cuti_val', 'pegawai.pe_nama')

@@ -27,7 +27,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('cuti/complete',  ['uses' => 'CutiController@showCompleteCuti']);
     $router->get('cuti/kategori',  ['uses' => 'CutiController@showKategori']);
     $router->get('cuti/{id}',  ['uses' => 'CutiController@showOneCuti']);
-    $router->get('cuti/pegawai/{pe_id}',  ['uses' => 'PegawaiController@showCuti']);
+    $router->get('cuti/pegawai/{pe_id}',  ['uses' => 'CutiController@showCutiPegawai']);
     $router->post('cuti',  ['uses' => 'CutiController@createCuti']);
     $router->post('cuti/kategori',  ['uses' => 'CutiController@createKategori']);
 });

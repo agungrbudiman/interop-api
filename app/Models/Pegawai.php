@@ -27,8 +27,4 @@ class Pegawai extends Model
     protected $table = 'pegawai';
     protected $primaryKey = 'pe_id';
 
-    public function cuti()
-    {
-        return $this->hasMany(Cuti::class, 'pe_id', 'pe_id');
-    }
 }
