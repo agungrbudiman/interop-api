@@ -43,4 +43,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('izin/pegawai/{pe_id}',  ['uses' => 'IzinController@showIzinPegawai']);
     $router->post('izin',  ['uses' => 'IzinController@createIzin']);
     $router->post('izin/kategori',  ['uses' => 'IzinController@createKategori']);
+
+    $router->get('laporan', ['uses' => 'LaporanController@showLaporan']);
 });
