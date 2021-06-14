@@ -37,7 +37,7 @@ class IzinController extends Controller
 
     public function createKategori(Request $request)
     {
-        $kategori = JenisCuti::create($request->all());
+        $kategori = JenisIzin::create($request->all());
         return response()->json($kategori, 201);
     }
 
