@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanExport;
 
 class LaporanController extends Controller
 {
@@ -16,7 +18,7 @@ class LaporanController extends Controller
         //
     }
 
-    public function showLaporan() {
+    private function laporan() {
         $laporan = DB::table('pegawai')
         ->select('pegawai.pe_id', 'pegawai.pe_nama', 
             DB::raw('count(kehadiran.pe_id) as kehadiran'), 
@@ -29,6 +31,15 @@ class LaporanController extends Controller
         ->leftJoin('izin', 'pegawai.pe_id', '=', 'izin.pe_id')
         ->groupBy('pegawai.pe_id')
         ->get();
-        return response()->json($laporan, 200);
+        return $laporan;
     }
+
+    public function showLaporan() {
+        return response()->json($this->laporan(), 200);
+    }
+
+    public function export() {
+        return Excel::download(new LaporanExport($this->laporan()), 'laporan.xlsx');
+    }
+
 }
