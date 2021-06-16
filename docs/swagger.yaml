@@ -1,0 +1,226 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Swagger Interop"
+  termsOfService: ""
+host: "localhost:8000"
+basePath: "/api"
+tags:
+- name: "pegawai"
+  description: ""
+- name: "izin"
+  description: ""
+- name: "cuti"
+  description: ""
+schemes:
+- "http"
+- "https"
+paths:
+  /pegawai:
+    post:
+      tags:
+      - "pegawai"
+      summary: "tambah data pegawai baru"
+      description: ""
+      operationId: "addPegawai"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/Pegawai"
+      responses:
+        "201":
+         description: "Pegawai berhasil disimpan"
+    get:
+      tags:
+      - "pegawai"
+      summary: "ambil semua data pegawai"
+      operationId: "getPegawai"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+         description: "Semua data pegawai"
+  /pegawai/{id}:
+    put:
+      tags:
+      - "pegawai"
+      summary: "perbarui data pegawai"
+      description: ""
+      operationId: "updatePegawai"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/Pegawai"
+      - name: id
+        in: path
+        description: Nomor pegawai
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "Pegawai berhasil diperbarui"
+    delete:
+      tags:
+      - "pegawai"
+      summary: "hapus data pegawai"
+      operationId: "deletePegawai"
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: Nomor pegawai
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "Pegawai berhasil dihapus"
+    get:
+      tags:
+      - "pegawai"
+      summary: "ambil satu data pegawai"
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: Nomor pegawai
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: "Data pegawai dengan nomor pegawai = `id`"
+          
+  /cuti:
+    post:
+      tags:
+      - "cuti"
+      summary: "tambah data cuti"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/Cuti"
+      responses:
+        "201":
+         description: "Cuti berhasil disimpan"
+    get:
+     tags:
+     - "cuti"
+     summary: "ambil semua data cuti"
+     produces:
+     - "application/json"
+     responses:
+       "200":
+       description: "Semua data cuti"
+       
+  /cuti/kategori:
+    get:
+      tags:
+      - "cuti"
+      summary: "ambil kategori cuti"
+      produces:
+      - "application/json"
+      responses:
+       "200":
+       description: "Semua data kategori cuti"
+      
+    
+definitions:
+  Izin:
+    type: "object"
+    required:
+    - "izin_id"
+    properties:
+      izin_id:
+        type: "integer"
+      durasi:
+        type: "integer"
+      start:
+        type: "string"
+      end:
+        type: "string"
+      keterangan:
+        type: "string"
+  Cuti:
+    type: "object"
+    required:
+    - "cuti_id"
+    properties:
+      cuti_id:
+        type: "integer"
+      saldo:
+        type: "integer"
+      durasi:
+        type: "integer"
+      start:
+        type: "string"
+      end:
+        type: "string"
+      alamat:
+        type: "string"
+      keterangan:
+        type: "string"
+  Pegawai:
+    type: "object"
+    required:
+    - "pe_nama"
+    properties:
+      pe_nama:
+        type: "string"
+      pe_nip:
+        type: "integer"
+      pa_id:
+        type: "integer"
+      pe_tempat_lahir:
+        type: "string"
+      pe_tanggal_lahir:
+        type: "string"
+      ag_id:
+        type: "integer"
+      st_id:
+        type: "integer"
+      pe_no_hp:
+        type: "integer"
+      pe_email:
+        type: "string"
+      pe_no_bpjs:
+        type: "string"
+      pe_alamat:
+        type: "string"
+      pe_hobi:
+        type: "string"
+      pr_id:
+        type: "integer"
+      kb_id:
+        type: "integer"
+      kc_id:
+        type: "integer"
+      kl_id:
+        type: "integer"
+    xml:
+      name: Pegawai
+externalDocs:
+  description: "Source code"
+  url: "https://github.com/agungrbudiman/interop-api"
