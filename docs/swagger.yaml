@@ -252,7 +252,8 @@ paths:
       produces:
       - "application/json"
       responses:
-        description: "Semua data cuti lengkap"
+        "200":
+          description: "Semua data cuti lengkap"
 
   /izin/complete:
     get:
@@ -262,7 +263,9 @@ paths:
       produces:
       - "application/json"
       responses:
-        description: "Semua data izin lengkap"
+        responses:
+          "200":
+            description: "Semua data izin lengkap"
 
   /cuti/pegawai/{id}:
     get:
