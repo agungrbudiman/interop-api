@@ -13,10 +13,34 @@ tags:
   description: ""
 - name: "cuti"
   description: ""
+- name: "laporan"
+  description: ""
 schemes:
 - "http"
 - "https"
 paths:
+  /laporan:
+    get:
+      tags:
+      - "laporan"
+      summary: "ambil data laporan"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Data laporan"
+          
+  /laporan/export:
+    get:
+      tags:
+      - "laporan"
+      summary: "data laporan dalam bentuk xlsx"
+      produces:
+      - "application/vnd.ms-excel"
+      responses:
+        "200":
+          description: "Data laporan"
+    
   /pegawai:
     post:
       tags:
@@ -124,17 +148,44 @@ paths:
           $ref: "#/definitions/Cuti"
       responses:
         "201":
-         description: "Cuti berhasil disimpan"
+          description: "Cuti berhasil disimpan"
     get:
-     tags:
-     - "cuti"
-     summary: "ambil semua data cuti"
-     produces:
-     - "application/json"
-     responses:
+      tags:
+      - "cuti"
+      summary: "ambil semua data cuti"
+      produces:
+      - "application/json"
+      responses:
        "200":
-       description: "Semua data cuti"
-       
+        description: "Semua data cuti"
+
+  /izin:
+    post:
+      tags:
+      - "izin"
+      summary: "tambah data izin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/Izin"
+      responses:
+        "201":
+          description: "Izin berhasil disimpan"
+    get:
+      tags:
+      - "izin"
+      summary: "ambil semua data izin"
+      produces:
+      - "application/json"
+      responses:
+       "200":
+        description: "Semua data izin"
+            
   /cuti/kategori:
     get:
       tags:
@@ -144,7 +195,108 @@ paths:
       - "application/json"
       responses:
        "200":
-       description: "Semua data kategori cuti"
+        description: "Semua data kategori cuti"
+    post:
+      tags:
+      - "cuti"
+      summary: "tambah kategori cuti"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          properties:
+            cuti_val:
+              type: "string"
+      responses:
+        "201":
+          description: "Kategori cuti berhasil disimpan"
+
+  /izin/kategori:
+    get:
+      tags:
+      - "izin"
+      summary: "ambil kategori izin"
+      produces:
+      - "application/json"
+      responses:
+       "200":
+        description: "Semua data kategori izin"
+    post:
+      tags:
+      - "izin"
+      summary: "tambah kategori izin"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          properties:
+            izin_val:
+              type: "string"
+      responses:
+        "201":
+          description: "Kategori izin berhasil disimpan"
+
+  /cuti/complete:
+    get:
+      tags:
+      - "cuti"
+      summary: "ambil data cuti lengkap"
+      produces:
+      - "application/json"
+      responses:
+        description: "Semua data cuti lengkap"
+
+  /izin/complete:
+    get:
+      tags:
+      - "izin"
+      summary: "ambil data izin lengkap"
+      produces:
+      - "application/json"
+      responses:
+        description: "Semua data izin lengkap"
+
+  /cuti/pegawai/{id}:
+    get:
+      tags:
+      - "cuti"
+      summary: "ambil data cuti pegawai"
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: Nomor pegawai
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Semua data cuti pegawai dengan nomor pegawai = `id`
+  
+  /izin/pegawai/{id}:
+    get:
+      tags:
+      - "izin"
+      summary: "ambil data izin pegawai"
+      produces:
+      - "application/json"
+      parameters:
+      - name: id
+        in: path
+        description: Nomor pegawai
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Semua data izin pegawai dengan nomor pegawai = `id`
       
     
 definitions:
