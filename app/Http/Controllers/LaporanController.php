@@ -19,7 +19,7 @@ class LaporanController extends Controller
     public function showLaporan() {
         $laporan = DB::table('pegawai')
         ->select('pegawai.pe_id', 'pegawai.pe_nama', 
-            DB::raw('count(kehadiran.pe_id) as kehadiran'), 
+            DB::raw('count(distinct(kehadiran.id)) as kehadiran'), 
             DB::raw('round(coalesce((sum(cuti.durasi)*count(distinct(cuti.cuti_id))/count(*)),0)) as cuti'),
             DB::raw('round(coalesce((sum(izin.durasi)*count(distinct(izin.izin_id))/count(*)),0)) as izin'),
             DB::raw('round(coalesce((sum(timestampdiff(minute,kehadiran.jam_masuk,kehadiran.jam_keluar))*count(distinct(kehadiran.id))/count(*)/60),0)) as jam_kerja'),
