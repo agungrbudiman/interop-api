@@ -87,6 +87,7 @@ $app->configure('app');
 |
 */
 
+$app->register(Maatwebsite\Excel\ExcelServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);

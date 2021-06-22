@@ -45,4 +45,5 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('izin/kategori',  ['uses' => 'IzinController@createKategori']);
 
     $router->get('laporan', ['uses' => 'LaporanController@showLaporan']);
+    $router->get('laporan/export', ['uses' => 'LaporanController@exportLaporan']);
 });
